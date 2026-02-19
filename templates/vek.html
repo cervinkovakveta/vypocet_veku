@@ -1,0 +1,107 @@
+<!-- Určuje typ dokumentu – HTML5 -->
+<!DOCTYPE html>
+<!-- Jazyk stránky je čeština -->
+<html lang="cs">
+
+<head>
+    <!-- Nastavení kódování znaků (kvůli češtině) -->
+    <meta charset="UTF-8">
+    <!-- Název stránky v záložce prohlížeče -->
+    <title>Výpočet věku</title>
+    <style>
+        /* Styl celého těla stránky */
+        body {
+            font-family: Arial, sans-serif;   /* Typ písma */
+            background-color: #f2f2f2;        /* Světle šedé pozadí */
+            padding: 40px;                    /* Okraj kolem obsahu */
+        }
+
+        /* Hlavní kontejner s formulářem */
+        .container {
+            background-color: white;          /* Bílé pozadí */
+            max-width: 350px;                 /* Maximální šířka */
+            margin: auto;                     /* Vycentrování na střed */
+            padding: 20px;                    /* Vnitřní odsazení */
+            border-radius: 8px;               /* Zaoblené rohy */
+            border: 1px solid #ccc;           /* Jemný rámeček */
+        }
+
+        /* Nadpis */
+        h2 {
+            text-align: center;               /* Zarovnání na střed */
+        }
+
+        /* Popisek formulářového pole */
+        label {
+            font-weight: bold;                /* Tučné písmo */
+        }
+
+        /* Vstupní pole pro zadání roku */
+        input {
+            width: 100%;                      /* Přes celou šířku boxu */
+            padding: 8px;                     /* Vnitřní odsazení */
+            margin-top: 5px;                  /* Mezery kolem pole */
+            margin-bottom: 15px;
+            border-radius: 4px;               /* Zaoblení rohů */
+            border: 1px solid #aaa;           /* Rámeček */
+            box-sizing: border-box;            /* Zarovnání šířky pole a tlačítka */
+        }
+
+        /* Tlačítko pro odeslání formuláře */
+        button {
+            width: 100%;                      /* Stejná šířka jako input */
+            padding: 8px;                     /* Vnitřní odsazení */
+            background-color: #4CAF50;        /* Zelená barva */
+            color: white;                     /* Bílý text */
+            border: none;                     /* Bez rámečku */
+            border-radius: 4px;               /* Zaoblené rohy */
+            cursor: pointer;                  /* Kurzor ruky */
+        }
+
+        /* Změna barvy tlačítka při najetí myši */
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Styl boxu s výsledkem */
+        .result {
+            margin-top: 15px;                 /* Mezery nad výsledkem */
+            padding: 10px;                    /* Vnitřní odsazení */
+            background-color: #e7f3ff;        /* Světle modré pozadí */
+            border: 1px solid #b3d8ff;        /* Modrý rámeček */
+            border-radius: 4px;               /* Zaoblené rohy */
+            text-align: center;               /* Text na střed */
+            font-weight: bold;                /* Tučný text */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hlavní kontejner stránky -->
+    <div class="container">
+        <!-- Nadpis stránky -->
+        <h2>Výpočet věku</h2>
+        <!-- Formulář odesílá data metodou POST -->
+        <form method="POST">
+            <!-- Popisek vstupního pole -->
+            <label for="rok_narozeni">Rok narození:</label>
+            <!-- Textové pole, ID pro label, název proměnné pro Flask -->
+            <input
+                type="text"
+                id="rok_narozeni"
+                name="rok_narozeni"
+            >
+            <!-- Tlačítko pro odeslání formuláře -->
+            <button type="submit">Spočítat věk</button>
+        </form>
+
+        <!-- Podmínka: zobrazí se jen pokud Flask pošle výsledek -->
+        {% if vek_uzivatele_html is not none %}
+            <div class="result">
+                <!-- Výpis výsledku z Pythonu -->
+                Tvůj věk je {{ vek_uzivatele_html }} let
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
